@@ -36,5 +36,28 @@
         <source src="happy_birthday.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audio');
+            var playButton = document.getElementById('playButton');
+
+            function playAudio() {
+                audio.play().then(() => {
+                    playButton.style.display = 'none';
+                }).catch((error) => {
+                    console.log('Audio playback failed:', error);
+                    playButton.style.display = 'block';
+                });
+            }
+
+            // Attempt to play the audio when the page loads
+            playAudio();
+
+            // Add a click event listener to the button to play the audio if it didn't autoplay
+            playButton.addEventListener('click', function() {
+                playAudio();
+            });
+        });
+    </script>
     </body>
 </html>
